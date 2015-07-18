@@ -146,3 +146,6 @@ p23(List, Size) -> {R,_} = lists:split(Size, lists:keysort(1,[ {random:uniform()
 
 % take N lotto numbers from lotto count L
 p24(N, L) -> p23(lists:seq(1,L), N).
+
+% permute list randomly
+p25(List) -> p23(List, length(List)).
