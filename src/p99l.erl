@@ -126,8 +126,20 @@ p20(List, N)    -> {L,[I|R]} = lists:split(N-1, List), {I, L++R}.
 % insert at
 p21(List, N, I) -> {L,R} = lists:split(N-1, List), L ++ [I] ++ R.
 
+
+
+
+
+% generate range
 p22(Lo, Hi) when is_integer(Lo), Hi >= Lo ->
     p22(Lo, Hi, []).
 
 p22(Lo, Hi, Work) when Hi >= Lo -> p22(Lo+1, Hi, [Lo]++Work);
 p22(_Lo,_Hi,Work)               -> lists:reverse(Work).
+
+
+
+
+
+% take random sample of list
+p23(List, Size) -> {R,_} = lists:split(Size, lists:keysort(1,[ {random:uniform(), L} || L <- List ])), [ Li || {_, Li} <- R].
