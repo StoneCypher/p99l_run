@@ -31,3 +31,5 @@ p5(List)    -> lists:reverse(List).
 % test for palindrome
 p6(List)    -> lists:reverse(List) == List.
 
+% flatten
+p7(DList)   -> lists:flatten(DList).
