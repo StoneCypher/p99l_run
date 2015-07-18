@@ -76,3 +76,6 @@ p10_work(Current, [New     | Rem], L, Extracted) -> p10_work(New,     Rem, 1,   
 
 % modified runlength encoding of lists
 p11(List) -> [ case Length of 1 -> Item; _N -> [Length, Item] end  || [Length, Item] <- p10(List) ].
+
+% decode rle/mrle
+p12(MRLE) -> lists:append([ case I of [Count, Item] -> lists:duplicate(Count, Item); Other -> [Other] end || I <- MRLE ]).
