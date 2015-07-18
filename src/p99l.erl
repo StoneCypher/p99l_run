@@ -149,3 +149,12 @@ p24(N, L) -> p23(lists:seq(1,L), N).
 
 % permute list randomly
 p25(List) -> p23(List, length(List)).
+
+
+
+
+
+% number of distinct sets
+nonunique_combos(0,_List, In) -> [In];
+nonunique_combos(N, List, In) -> lists:append([ nonunique_combos(N-1, List -- [L], [L] ++ In) || L <- List ]).
+
