@@ -69,3 +69,10 @@ p10([ First | Rem ]) -> p10_work(First, Rem, 1, []).
 p10_work(Current, [],              L, Extracted) -> lists:reverse([[L,Current]] ++ Extracted);
 p10_work(Current, [Current | Rem], L, Extracted) -> p10_work(Current, Rem, L+1, Extracted);
 p10_work(Current, [New     | Rem], L, Extracted) -> p10_work(New,     Rem, 1,   [[L,Current]] ++ Extracted).
+
+
+
+
+
+% modified runlength encoding of lists
+p11(List) -> [ case Length of 1 -> Item; _N -> [Length, Item] end  || [Length, Item] <- p10(List) ].
