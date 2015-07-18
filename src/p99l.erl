@@ -45,3 +45,15 @@ p8([ First | Rem ]) -> p8_work(First, Rem, []).
 p8_work(Current, [],              Extracted) -> lists:reverse([Current] ++ Extracted);
 p8_work(Current, [Current | Rem], Extracted) -> p8_work(Current, Rem, Extracted);
 p8_work(Current, [New     | Rem], Extracted) -> p8_work(New,     Rem, [Current] ++ Extracted).
+
+
+
+
+
+% enlist consecutive duplicates
+p9([])              -> [];
+p9([ First | Rem ]) -> p9_work(First, Rem, [], []).
+
+p9_work(Current, [],              Box, Extracted) -> lists:reverse([[Current] ++ Box] ++ Extracted);
+p9_work(Current, [Current | Rem], Box, Extracted) -> p9_work(Current, Rem, [Current] ++ Box, Extracted);
+p9_work(Current, [New     | Rem], Box, Extracted) -> p9_work(New,     Rem, [],               [[Current] ++ Box] ++ Extracted).
