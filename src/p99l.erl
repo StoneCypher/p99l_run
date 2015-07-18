@@ -85,3 +85,20 @@ p13(L)       -> p10(L).
 
 % given a list and a multiplier, duplicate each list item multiplier times.
 p14(List, M) -> lists:append([ lists:duplicate(M, L) || L <- List ]).
+
+
+
+
+
+% drop nth
+p15(List, N) when N > 0 ->
+    p15(List, N, []).
+
+p15(List, N, Work) ->
+    case length(List) >= N of
+        true ->
+            {Pref, Suf} = lists:split(N, List),
+            p15(Suf, N, [lists:droplast(Pref)] ++ Work);
+        false ->
+            lists:append(lists:reverse([List] ++ Work))
+    end.
