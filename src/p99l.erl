@@ -21,3 +21,6 @@ p2(List)    -> lists:nth(length(List) - 1, List).
 
 % find the kth element of a list
 p3(K, List) -> lists:nth(K, List).
+
+% count the elements in a list
+p4(List)    -> length(List).
