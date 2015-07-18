@@ -91,10 +91,10 @@ p14(List, M) -> lists:append([ lists:duplicate(M, L) || L <- List ]).
 
 
 % drop nth
-p15(List, N) when N > 0 ->
+p16(List, N) when N > 0 ->
     p15(List, N, []).
 
-p15(List, N, Work) ->
+p16(List, N, Work) ->
     case length(List) >= N of
         true ->
             {Pref, Suf} = lists:split(N, List),
@@ -102,3 +102,10 @@ p15(List, N, Work) ->
         false ->
             lists:append(lists:reverse([List] ++ Work))
     end.
+
+
+
+
+
+% split
+p17(List, N) -> lists:split(N, List).
