@@ -24,3 +24,7 @@ p3(K, List) -> lists:nth(K, List).
 
 % count the elements in a list
 p4(List)    -> length(List).
+
+% reverse a list
+p5(List)    -> lists:reverse(List).
+
