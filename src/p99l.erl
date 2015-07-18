@@ -75,7 +75,13 @@ p10_work(Current, [New     | Rem], L, Extracted) -> p10_work(New,     Rem, 1,   
 
 
 % modified runlength encoding of lists
-p11(List) -> [ case Length of 1 -> Item; _N -> [Length, Item] end  || [Length, Item] <- p10(List) ].
+p11(List)    -> [ case Length of 1 -> Item; _N -> [Length, Item] end  || [Length, Item] <- p10(List) ].
 
 % decode rle/mrle
-p12(MRLE) -> lists:append([ case I of [Count, Item] -> lists:duplicate(Count, Item); Other -> [Other] end || I <- MRLE ]).
+p12(MRLE)    -> lists:append([ case I of [Count, Item] -> lists:duplicate(Count, Item); Other -> [Other] end || I <- MRLE ]).
+
+% p13 specifies an implementation detail of p10 which was how i already did it anyway - count, don't box then take length.
+p13(L)       -> p10(L).
+
+% given a list and a multiplier, duplicate each list item multiplier times.
+p14(List, M) -> lists:append([ lists:duplicate(M, L) || L <- List ]).
