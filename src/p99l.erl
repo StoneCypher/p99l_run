@@ -83,8 +83,11 @@ p12(MRLE)    -> lists:append([ case I of [Count, Item] -> lists:duplicate(Count,
 % p13 specifies an implementation detail of p10 which was how i already did it anyway - count, don't box then take length.
 p13(L)       -> p10(L).
 
+% duplicate each list item once.
+p14(List)    -> lists:append([ [L,L] || L <- List ]).
+
 % given a list and a multiplier, duplicate each list item multiplier times.
-p14(List, M) -> lists:append([ lists:duplicate(M, L) || L <- List ]).
+p15(List, M) -> lists:append([ lists:duplicate(M, L) || L <- List ]).
 
 
 
@@ -92,13 +95,13 @@ p14(List, M) -> lists:append([ lists:duplicate(M, L) || L <- List ]).
 
 % drop nth
 p16(List, N) when N > 0 ->
-    p15(List, N, []).
+    p16(List, N, []).
 
 p16(List, N, Work) ->
     case length(List) >= N of
         true ->
             {Pref, Suf} = lists:split(N, List),
-            p15(Suf, N, [lists:droplast(Pref)] ++ Work);
+            p16(Suf, N, [lists:droplast(Pref)] ++ Work);
         false ->
             lists:append(lists:reverse([List] ++ Work))
     end.
