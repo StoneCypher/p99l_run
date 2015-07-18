@@ -119,3 +119,6 @@ p18(List, Start, End) -> {_, S} = lists:split(Start-1, List), {E, _} = lists:spl
 % rotate left N
 prem(X, Range) -> ((X rem Range) + (2*Range)) rem Range.   % lawl positive modulus
 p19(List, Rot) -> {L,R} = lists:split(prem(Rot, length(List)), List), R ++ L.
+
+% remove at and return
+p20(List, N) -> {L,[I|R]} = lists:split(N-1, List), {I, L++R}.
