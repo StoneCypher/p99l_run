@@ -115,3 +115,7 @@ p17(List, N) -> lists:split(N, List).
 
 % extract the 1-indexed slice, caps included
 p18(List, Start, End) -> {_, S} = lists:split(Start-1, List), {E, _} = lists:split((End+1)-Start, S), E.
+
+% rotate left N
+prem(X, Range) -> ((X rem Range) + (2*Range)) rem Range.   % lawl positive modulus
+p19(List, Rot) -> {L,R} = lists:split(prem(Rot, length(List)), List), R ++ L.
