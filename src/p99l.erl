@@ -28,3 +28,6 @@ p4(List)    -> length(List).
 % reverse a list
 p5(List)    -> lists:reverse(List).
 
+% test for palindrome
+p6(List)    -> lists:reverse(List) == List.
+
