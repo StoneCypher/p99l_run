@@ -57,3 +57,15 @@ p9([ First | Rem ]) -> p9_work(First, Rem, [], []).
 p9_work(Current, [],              Box, Extracted) -> lists:reverse([[Current] ++ Box] ++ Extracted);
 p9_work(Current, [Current | Rem], Box, Extracted) -> p9_work(Current, Rem, [Current] ++ Box, Extracted);
 p9_work(Current, [New     | Rem], Box, Extracted) -> p9_work(New,     Rem, [],               [[Current] ++ Box] ++ Extracted).
+
+
+
+
+
+% runlength encoding of lists, specifies lists as output, would like tuples; a sad
+p10([])              -> [];
+p10([ First | Rem ]) -> p10_work(First, Rem, 1, []).
+
+p10_work(Current, [],              L, Extracted) -> lists:reverse([[L,Current]] ++ Extracted);
+p10_work(Current, [Current | Rem], L, Extracted) -> p10_work(Current, Rem, L+1, Extracted);
+p10_work(Current, [New     | Rem], L, Extracted) -> p10_work(New,     Rem, 1,   [[L,Current]] ++ Extracted).
